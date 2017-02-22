@@ -1,6 +1,7 @@
 package simonlammer.htlleonding.ac.at.openglcameraoverlay;
 
 import android.content.Context;
+import android.graphics.PixelFormat;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
@@ -24,6 +25,8 @@ public class GlOverlay extends GLSurfaceView {
 
     private void init() {
         this.renderer = new GlEs20Renderer();
+        this.setZOrderOnTop(true);
+        this.getHolder().setFormat(PixelFormat.TRANSLUCENT);
         this.setEGLContextClientVersion(2);
         this.setRenderer(renderer);
         this.setRenderMode(RENDERMODE_CONTINUOUSLY);
