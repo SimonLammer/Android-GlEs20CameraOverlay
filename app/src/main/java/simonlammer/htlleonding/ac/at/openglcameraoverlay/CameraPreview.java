@@ -21,14 +21,17 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
     public CameraPreview(Context context) {
         super(context);
+        setCamera(context);
     }
 
     public CameraPreview(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setCamera(context);
     }
 
     public CameraPreview(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        setCamera(context);
     }
 
     public void surfaceCreated(SurfaceHolder holder) {
@@ -36,13 +39,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             return;
         }
 
-        // The Surface has been created, now tell the camera where to draw the preview.
-        try {
-            mCamera.setPreviewDisplay(holder);
-            mCamera.startPreview();
-        } catch (IOException e) {
-            Log.d(TAG, "Error setting camera preview: " + e.getMessage());
-        }
+        mCamera.startPreview();
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
@@ -82,8 +79,8 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
-    public void setCamera(Camera camera) {
-        mCamera = camera;
+    private void setCamera(Context context) {
+        mCamera = getCameraInstance(context);
 
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
@@ -97,5 +94,19 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         if (mCamera != null) {
             mCamera.release();
         }
+    }
+
+
+
+    public static Camera getCameraInstance(Context context){
+        Camera c = null;
+        try {
+            c = Camera.open(0); // attempt to get a Camera instance
+        }
+        catch (Exception e){
+            // Camera is not available (in use or does not exist)
+            throw new IllegalStateException("Camera is not available", e);
+        }
+        return c; // returns null if camera is unavailable
     }
 }
