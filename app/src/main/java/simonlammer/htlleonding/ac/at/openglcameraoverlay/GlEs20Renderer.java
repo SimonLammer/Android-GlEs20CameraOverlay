@@ -96,6 +96,9 @@ public class GlEs20Renderer implements GLSurfaceView.Renderer {
             setup = true;
         }
 
+        GLES20.glClearColor(0.0f, 0.2f, 0.3f, 1.0f);
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+
         // Add program to OpenGL ES environment
         GLES20.glUseProgram(program);
 
