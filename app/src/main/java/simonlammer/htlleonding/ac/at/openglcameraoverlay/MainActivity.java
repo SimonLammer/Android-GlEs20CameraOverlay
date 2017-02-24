@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CameraPreview.requestCameraPermissions(this);
         setContentView(R.layout.activity_main);
 
         cameraPreview = (CameraPreview) findViewById(R.id.camera_preview);

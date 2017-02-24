@@ -1,7 +1,11 @@
 package simonlammer.htlleonding.ac.at.openglcameraoverlay;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -96,9 +100,19 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
+    public static void requestCameraPermissions(MainActivity mainActivity) {
+        if (ContextCompat.checkSelfPermission(mainActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            //if (ActivityCompat.shouldShowRequestPermissionRationale(mainActivity, Manifest.permission.CAMERA)) {
 
+            //} else {
+                ActivityCompat.requestPermissions(mainActivity, new String[]{
+                        Manifest.permission.CAMERA
+                }, 1);
+            //}
+        }
+    }
 
-    public static Camera getCameraInstance(Context context){
+    private static Camera getCameraInstance(Context context){
         Camera c = null;
         try {
             c = Camera.open(0); // attempt to get a Camera instance

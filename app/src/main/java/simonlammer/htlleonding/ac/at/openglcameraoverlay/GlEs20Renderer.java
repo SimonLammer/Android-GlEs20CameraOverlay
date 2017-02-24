@@ -3,6 +3,7 @@ package simonlammer.htlleonding.ac.at.openglcameraoverlay;
 import android.graphics.Color;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.util.FloatMath;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -28,6 +29,7 @@ public class GlEs20Renderer implements GLSurfaceView.Renderer {
 
     private boolean setup = false;
     private int program = -1;
+    private int animation = 0;
 
     private void setup() {
         vertexBuffer = ByteBuffer.allocateDirect(triangleCoords.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
@@ -96,6 +98,8 @@ public class GlEs20Renderer implements GLSurfaceView.Renderer {
             setup = true;
         }
 
+        animation++;
+
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
@@ -117,7 +121,7 @@ public class GlEs20Renderer implements GLSurfaceView.Renderer {
         int mColorHandle = GLES20.glGetUniformLocation(program, "vColor");
 
         // Set color for drawing the triangle
-        GLES20.glUniform4fv(mColorHandle, 1, new float[] {0.5f, 0.0f, 0.0f, 1.0f}, 0);
+        GLES20.glUniform4fv(mColorHandle, 1, new float[] {(float)Math.sin(animation / 100), 0.0f, 0.0f, 1.0f}, 0);
 
         // Draw the triangle
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
