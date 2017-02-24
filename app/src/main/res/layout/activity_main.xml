@@ -10,6 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="simonlammer.htlleonding.ac.at.openglcameraoverlay.MainActivity">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@color/colorPrimaryDark" />
+
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -31,5 +36,10 @@
             android:layout_height="300dp" />
 
     </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@color/colorPrimaryDark" />
 
 </RelativeLayout>
