@@ -37,9 +37,9 @@ public class GlEs20Renderer implements GLSurfaceView.Renderer {
 
         String vertexShaderSource =
                 "attribute vec4 vPosition;" +
-                "uniform vec4 vTranspose;" +
+                "uniform vec4 vTranslate;" +
                 "void main() {" +
-                "  gl_Position = vPosition + vTranspose;" +
+                "  gl_Position = vPosition + vTranslate;" +
                 "}";
 
         String fragmentShaderSource =
@@ -122,7 +122,7 @@ public class GlEs20Renderer implements GLSurfaceView.Renderer {
         GLES20.glUniform4fv(mColorHandle, 1, new float[] {0.5f, 0.0f, 0.0f, 1.0f}, 0);
 
         // move
-        GLES20.glUniform4fv(GLES20.glGetUniformLocation(program, "vTranspose"), 1, new float[] {0f, 0f, 0f, 1f}, 0);
+        GLES20.glUniform4fv(GLES20.glGetUniformLocation(program, "vTranslate"), 1, new float[] {0f, 0f, 0f, 1f}, 0);
 
         // Draw the triangle
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
