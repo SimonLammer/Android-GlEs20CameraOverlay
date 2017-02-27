@@ -10,24 +10,13 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private CameraPreview cameraPreview;
     private GlOverlay glOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CameraPreview.requestCameraPermissions(this);
         setContentView(R.layout.activity_main);
-
-        cameraPreview = (CameraPreview) findViewById(R.id.camera_preview);
-
         glOverlay = (GlOverlay) findViewById(R.id.overlay);
-    }
-
-    @Override
-    protected void onDestroy() {
-        cameraPreview.onDestroy();
-        super.onDestroy();
     }
 
     @Override

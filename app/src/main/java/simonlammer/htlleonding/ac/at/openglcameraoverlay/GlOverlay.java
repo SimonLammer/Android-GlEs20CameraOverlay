@@ -25,9 +25,6 @@ public class GlOverlay extends GLSurfaceView {
 
     private void init() {
         this.renderer = new GlEs20Renderer();
-        this.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-        this.getHolder().setFormat(PixelFormat.RGBA_8888);
-        this.setZOrderOnTop(true);
         this.setEGLContextClientVersion(2);
         this.setRenderer(renderer);
         this.setRenderMode(RENDERMODE_CONTINUOUSLY);
