@@ -19,9 +19,9 @@ import javax.microedition.khronos.opengles.GL10;
 public class GlEs20Renderer implements GLSurfaceView.Renderer {
     private static final int COORDS_PER_VERTEX = 4;
     private final float[] triangleCoords = {
-            -0.5f, -0.5f, 0.0f, 1.0f,
-             0.5f, -0.5f, 0.0f, 1.0f,
-             0.5f,  0.5f, 0.0f, 1.0f,
+            -1.0f, -1.0f, 0.0f, 1.0f,
+             0.0f,  1.0f, 0.0f, 1.0f,
+             1.0f,  0.0f, 0.0f, 1.0f
     };
     private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per float
